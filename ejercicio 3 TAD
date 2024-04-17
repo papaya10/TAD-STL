@@ -45,18 +45,14 @@ int main() {
     lista = insertar_principio(lista, 4);
     lista = insertar_principio(lista, 5);
 
-    // Mostrar la lista original
     cout << "Lista original: ";
     imprimir_lista(lista);
 
-    // Invertir la lista
     Nodo* lista_invertida = invertir_lista(lista);
 
-    // Mostrar la lista invertida
     cout << "Lista invertida: ";
     imprimir_lista(lista_invertida);
 
-    // función para Liberar memoria
     while (lista_invertida != nullptr) {
         Nodo* aux = lista_invertida;
         lista_invertida = lista_invertida->siguiente;
