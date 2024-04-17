@@ -15,14 +15,14 @@ bool es_primo(int n) {
 }
 
 int main() {
-    srand(time(nullptr)); // Inicializar la semilla para generar números aleatorios
+    srand(time(nullptr)); // Inicializar números aleatorios
     list<int> lista_primos;
     int cantidad_numeros;
 
     cout << "Ingrese la cantidad de números primos aleatorios que desea generar: ";
     cin >> cantidad_numeros;
 
-    // Generar números primos aleatorios y agregarlos a la lista
+// Generar números primos aleatorios y agregarlos a la lista
     int contador = 0;
     while (contador < cantidad_numeros) {
         int numero = rand() % 100 + 1; // Generar números aleatorios entre 1 y 100
@@ -32,7 +32,6 @@ int main() {
         }
     }
 
-    // Imprimir la lista de números primos aleatorios
     cout << "Lista de números primos aleatorios:" << endl;
     for (int primo : lista_primos) {
         cout << primo << " ";
