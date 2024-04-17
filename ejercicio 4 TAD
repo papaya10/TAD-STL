@@ -1,0 +1,68 @@
+//ejercicio 4 TAD
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int dato;
+    Nodo* siguiente;
+};
+
+Nodo* insertar_principio(Nodo* inicio, int dato) {
+    Nodo* nuevo = new Nodo;
+    nuevo->dato = dato;
+    nuevo->siguiente = inicio;
+    return nuevo;
+}
+
+Nodo* obtener_nodo(Nodo* inicio, int n) {
+    Nodo* aux = inicio;
+    int contador = 1;
+
+    while (aux != nullptr && contador != n) {
+        aux = aux->siguiente;
+        contador++;
+    }
+
+    return aux;
+}
+
+void imprimir_nodo(Nodo* nodo) {
+    if (nodo != nullptr) {
+        cout << nodo->dato << endl;
+    } else {
+        cout << "Nodo no encontrado" << endl;
+    }
+}
+
+int main() {
+    Nodo* lista = nullptr;
+
+// elementos
+    lista = insertar_principio(lista, 1);
+    lista = insertar_principio(lista, 3);
+    lista = insertar_principio(lista, 5);
+    lista = insertar_principio(lista, 7);
+
+    cout << "Lista enlazada: ";
+    for (Nodo* aux = lista; aux != nullptr; aux = aux->siguiente) {
+        cout << aux->dato << " ";
+    }
+    cout << endl;
+
+  // N-ésimo nodo
+    int n;
+    cout << "Ingrese el valor de N: ";
+    cin >> n;
+
+    Nodo* nodo_n = obtener_nodo(lista, n);
+    cout << "El " << n << "-ésimo nodo es: ";
+    imprimir_nodo(nodo_n);
+
+    while (lista != nullptr) {
+        Nodo* aux = lista;
+        lista = lista->siguiente;
+        delete aux;
+    }
+
+    return 0;
+}
