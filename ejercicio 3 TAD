@@ -1,0 +1,67 @@
+//ejercicio 3 TAD
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int dato;
+    Nodo* siguiente;
+};
+
+Nodo* insertar_principio(Nodo* inicio, int dato) {
+    Nodo* nuevo = new Nodo;
+    nuevo->dato = dato;
+    nuevo->siguiente = inicio;
+    return nuevo;
+}
+
+void imprimir_lista(Nodo* inicio) {
+    for (Nodo* aux = inicio; aux != nullptr; aux = aux->siguiente) {
+        cout << aux->dato << " ";
+    }
+    cout << endl;
+}
+
+Nodo* invertir_lista(Nodo* inicio) {
+    Nodo* prev = nullptr;
+    Nodo* curr = inicio;
+    Nodo* next = nullptr;
+
+    while (curr != nullptr) {
+        next = curr->siguiente;
+        curr->siguiente = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    return prev; // El nuevo inicio de la lista es el último nodo
+}
+
+int main() {
+    // lista enlazada 
+    Nodo* lista = nullptr;
+    lista = insertar_principio(lista, 1);
+    lista = insertar_principio(lista, 2);
+    lista = insertar_principio(lista, 3);
+    lista = insertar_principio(lista, 4);
+    lista = insertar_principio(lista, 5);
+
+    // Mostrar la lista original
+    cout << "Lista original: ";
+    imprimir_lista(lista);
+
+    // Invertir la lista
+    Nodo* lista_invertida = invertir_lista(lista);
+
+    // Mostrar la lista invertida
+    cout << "Lista invertida: ";
+    imprimir_lista(lista_invertida);
+
+    // función para Liberar memoria
+    while (lista_invertida != nullptr) {
+        Nodo* aux = lista_invertida;
+        lista_invertida = lista_invertida->siguiente;
+        delete aux;
+    }
+
+    return 0;
+}
