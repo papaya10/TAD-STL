@@ -1,0 +1,31 @@
+//ejercicio 2 STL ordenamiento
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main() {
+    list<int> lista;
+
+    int cantidad, numero;
+
+    cout << "Ingrese la cantidad de números enteros que desea ingresar: ";
+    cin >> cantidad;
+
+    for (int i = 0; i < cantidad; ++i) {
+        cout << "Ingrese el número " << i + 1 << ": ";
+        cin >> numero;
+        auto it = lista.begin();
+        while (it != lista.end() && *it < numero) {
+            ++it;
+        }
+        lista.insert(it, numero);
+    }
+
+    cout << "Lista enlazada ordenada:" << endl;
+    for (int num : lista) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
