@@ -1,0 +1,63 @@
+//ejercicio 2 TAD
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int dato;
+    Nodo* siguiente;
+};
+
+Nodo* insertar_ordenado(Nodo* inicio, int dato) {
+    Nodo* nuevo = new Nodo;
+    nuevo->dato = dato;
+    nuevo->siguiente = nullptr;
+
+    if (inicio == nullptr || dato < inicio->dato) {
+        nuevo->siguiente = inicio;
+        return nuevo;
+    }
+
+    Nodo* aux = inicio;
+    while (aux->siguiente != nullptr && dato > aux->siguiente->dato) {
+        aux = aux->siguiente;
+    }
+
+    nuevo->siguiente = aux->siguiente;
+    aux->siguiente = nuevo;
+
+    return inicio;
+}
+
+void imprimir_lista(Nodo* inicio) {
+    cout << "Lista enlazada ordenada:" << endl;
+    for (Nodo* aux = inicio; aux != nullptr; aux = aux->siguiente) {
+        cout << aux->dato << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    Nodo* lista = nullptr;
+    int numero, cantidad;
+
+    cout << "Ingrese la cantidad de números enteros que desea ingresar: ";
+    cin >> cantidad;
+
+    for (int i = 0; i < cantidad; ++i) {
+        cout << "Ingrese el número " << i+1 << ": ";
+        cin >> numero;
+        lista = insertar_ordenado(lista, numero);
+    }
+
+    imprimir_lista(lista);
+
+    // Liberar memoria
+    Nodo* aux;
+    while (lista != nullptr) {
+        aux = lista;
+        lista = lista->siguiente;
+        delete aux;
+    }
+
+    return 0;
+}
