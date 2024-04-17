@@ -51,7 +51,6 @@ int main() {
 
     imprimir_lista(lista);
 
-    // Liberar memoria
     Nodo* aux;
     while (lista != nullptr) {
         aux = lista;
