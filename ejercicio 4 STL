@@ -1,0 +1,43 @@
+//ejercicio 4 STL
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main() {
+    list<int> lista;
+
+  // número de elementos
+    int n;
+    cout << "Ingrese la cantidad de elementos en la lista: ";
+    cin >> n;
+
+  // Ingresar elementos 
+    cout << "Ingrese los " << n << " elementos separados por espacios: ";
+    for (int i = 0; i < n; ++i) {
+        int elemento;
+        cin >> elemento;
+        lista.push_back(elemento);
+    }
+
+    cout << "Lista enlazada: ";
+    for (int num : lista) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+  // nodo N-ésimo
+    int posicion;
+    cout << "Ingrese la posición del nodo que desea obtener: ";
+    cin >> posicion;
+
+    auto iterador = lista.begin();
+    advance(iterador, posicion - 1); // Avanzar al iterador hasta la posición deseada
+
+    if (iterador != lista.end()) {
+        cout << "El " << posicion << "-ésimo nodo es: " << *iterador << endl;
+    } else {
+        cout << "Posición fuera de rango" << endl;
+    }
+
+    return 0;
+}
